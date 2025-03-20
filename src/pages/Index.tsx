@@ -1,13 +1,58 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useEffect } from "react";
+import { ControllerProvider } from "@/context/ControllerContext";
+import { useKeyboardListener } from "@/hooks/useKeyboardListener";
+import { useMouseListener } from "@/hooks/useMouseListener";
+import { Nav } from "@/components/Nav";
+import { ControllerVisual } from "@/components/ControllerVisual";
+import { MappingConfig } from "@/components/MappingConfig";
+import { SettingsPanel } from "@/components/SettingsPanel";
+import { StatusBar } from "@/components/StatusBar";
+
+const EmulatorContent = () => {
+  useKeyboardListener();
+  useMouseListener();
+
+  useEffect(() => {
+    document.title = "Virtual Controller Emulator";
+  }, []);
+
+  return (
+    <div className="min-h-screen pt-24 pb-16 px-4">
+      <Nav />
+      
+      <div className="container mx-auto space-y-8 animate-fade-in">
+        <div>
+          <span className="inline-block py-1 px-3 text-xs font-medium rounded-full bg-primary/10 text-primary mb-4">Real-time Visualization</span>
+          <h2 className="text-2xl font-medium mb-8">Controller State</h2>
+          <ControllerVisual />
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <span className="inline-block py-1 px-3 text-xs font-medium rounded-full bg-primary/10 text-primary mb-4">Keyboard to Controller</span>
+            <h2 className="text-2xl font-medium mb-6">Button Mappings</h2>
+            <MappingConfig />
+          </div>
+          
+          <div>
+            <span className="inline-block py-1 px-3 text-xs font-medium rounded-full bg-primary/10 text-primary mb-4">Mouse to Analog</span>
+            <h2 className="text-2xl font-medium mb-6">Sensitivity Settings</h2>
+            <SettingsPanel />
+          </div>
+        </div>
+      </div>
+      
+      <StatusBar />
+    </div>
+  );
+};
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <ControllerProvider>
+      <EmulatorContent />
+    </ControllerProvider>
   );
 };
 
