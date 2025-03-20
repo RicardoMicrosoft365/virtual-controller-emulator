@@ -36,6 +36,36 @@
     --radius: 0.75rem;
   }
 
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 210 100% 50%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+
   * {
     @apply border-border;
   }
@@ -48,27 +78,29 @@
 
 @layer components {
   .glass-panel {
-    @apply bg-white/60 backdrop-blur-lg border border-white/20 rounded-xl shadow-lg;
+    @apply bg-white/60 backdrop-blur-lg border border-white/20 rounded-xl shadow-lg dark:bg-black/30 dark:border-white/10;
   }
 
   .glass-button {
-    @apply bg-white/60 hover:bg-white/80 backdrop-blur-lg border border-white/20 rounded-lg px-4 py-2 shadow-md transition-all duration-300;
+    @apply bg-white/60 hover:bg-white/80 backdrop-blur-lg border border-white/20 rounded-lg px-4 py-2 shadow-md transition-all duration-300 
+           dark:bg-white/10 dark:hover:bg-white/20 dark:border-white/5;
   }
 
   .glass-input {
-    @apply bg-white/60 backdrop-blur-lg border border-white/20 rounded-lg px-4 py-2 shadow-sm;
+    @apply bg-white/60 backdrop-blur-lg border border-white/20 rounded-lg px-4 py-2 shadow-sm
+           dark:bg-white/10 dark:border-white/5;
   }
 
   .analog-stick {
-    @apply relative rounded-full bg-secondary border-2 border-primary/20 w-36 h-36 shadow-inner;
+    @apply relative rounded-full bg-black/90 border-2 border-gray-700 w-36 h-36 shadow-inner;
   }
 
   .analog-knob {
-    @apply absolute bg-primary/90 rounded-full w-14 h-14 shadow-md transform -translate-x-1/2 -translate-y-1/2 transition-all duration-75;
+    @apply absolute bg-zinc-800 rounded-full w-14 h-14 shadow-md transform -translate-x-1/2 -translate-y-1/2 transition-all duration-75;
   }
 
   .controller-button {
-    @apply bg-secondary hover:bg-primary/10 active:bg-primary/30 border border-primary/20 rounded-full w-14 h-14 flex items-center justify-center shadow-md transition-all duration-150;
+    @apply bg-black hover:bg-black/80 border border-gray-700 rounded-full w-14 h-14 flex items-center justify-center shadow-md transition-all duration-150;
   }
 
   .controller-button-active {
@@ -76,10 +108,31 @@
   }
 
   .mapping-item {
-    @apply flex items-center space-x-3 p-3 rounded-lg bg-white/60 backdrop-blur-sm shadow-sm border border-white/20 transition-all duration-300;
+    @apply flex items-center space-x-3 p-3 rounded-lg bg-white/60 backdrop-blur-sm shadow-sm border border-white/20 transition-all duration-300
+           dark:bg-black/30 dark:border-white/5;
   }
 
   .focus-effect {
     @apply hover:ring-2 hover:ring-primary/20 hover:ring-offset-1 focus:ring-2 focus:ring-primary/20 focus:ring-offset-1 focus-visible:outline-none;
+  }
+  
+  .xbox-controller {
+    @apply relative bg-zinc-900 rounded-3xl p-8 mx-auto;
+  }
+  
+  .xbox-button-a {
+    @apply controller-button text-xbox-a font-bold;
+  }
+  
+  .xbox-button-b {
+    @apply controller-button text-xbox-b font-bold;
+  }
+  
+  .xbox-button-x {
+    @apply controller-button text-xbox-x font-bold;
+  }
+  
+  .xbox-button-y {
+    @apply controller-button text-xbox-y font-bold;
   }
 }
